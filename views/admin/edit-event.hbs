@@ -1,0 +1,30 @@
+<div id="daily" class="col-12 px-2 pt-3">
+    <h2 class="section-header text-center mb-3">Edit Event Details</h2>
+    <form action="/admin/edit-event" method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Event name" value="{{event.name}}"
+                >
+        </div>
+        <div class="row">
+            <div class="mb-3 col-6">
+                <input type="date" class="form-control" name="date" placeholder="Date" value="{{event.date}}" >
+            </div>
+            <div class="mb-3 col-6">
+                <input type="time" class="form-control" name="time" placeholder="Time" value="{{event.time}}" >
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <textarea class="form-control" name="conditions" rows="8" placeholder="conditions">{{event.conditions}}</textarea>
+        </div>
+        <div class="mb-3">
+            <input type="url" class="form-control" name="link" placeholder="link" value="{{event.link}}" >
+        </div>
+        <div class="mb-3" style="display:none">
+            <input type="text" class="form-control" name="index" value="{{event.index}}" >
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-sm btn-primary">Edit Event</button>
+        </div>
+    </form>
+</div>

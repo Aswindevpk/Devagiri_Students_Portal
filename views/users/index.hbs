@@ -1,0 +1,244 @@
+<div class="col-12">
+
+  <!-- carousel section  -->
+  <div class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner" id="carousel">
+      {{#each carousal_arr}}
+      {{#if @first}}
+      <div class="carousel-item active">
+        {{else}}
+        <div class="carousel-item">
+          {{/if}}
+          <img src="/carousel/{{this}}.jpg" class="d-block w-100" alt="...">
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('.carousel').carousel({
+        interval: 5000
+      });
+      $(".carousel").swiperight(function () {
+        $(this).carousel('prev');
+      });
+      $(".carousel").swipeleft(function () {
+        $(this).carousel('next');
+      });
+    });
+  </script>
+
+  {{!-- blood donation --}}
+  <div id="blood-donation" class="m-2 p-3">
+    <div class="row">
+      <p class="col-7 text-center"><span>A+</span> Blood Urgent !</p>
+      <div class="col-5 text-center">
+        <a class="btn btn-primary" href="/donate-blood">Donate now</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- daily updates -->
+  <div id="events" class="col-12 px-2 pt-3 ">
+    <h2 class="section-header">EVENTS</h2>
+    {{#each events}}
+    <div class=" rounded bg-light mb-3">
+      <div id="eventClick" class="row p-2" data-bs-toggle="collapse" href="#collapse{{@index}}" role="button"
+        aria-expanded="false" aria-controls="collapseExample">
+        <div class="col-6">
+          <p id="event-date">{{this.date}}</p>
+          <h3 id="event-name">{{this.name}}</h3>
+        </div>
+        <div class="col-6 text-end ">
+          <p id="event-time">{{this.time}}</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="17.727" height="13.707" viewBox="0 0 17.727 13.707">
+            <g id="Group_21" data-name="Group 21" transform="translate(0.354 0.354)">
+              <line id="Line_6" data-name="Line 6" x2="9" y2="9" fill="none" stroke="#1a1a56" stroke-width="1" />
+              <line id="Line_7" data-name="Line 7" x2="9" y2="9" transform="translate(0 4)" fill="none" stroke="#1a1a56"
+                stroke-width="1" />
+              <path id="Path_2" data-name="Path 2" d="M8,0,3.5,5.063,0,9" transform="translate(9)" fill="#ffcd39"
+                stroke="#1a1a56" stroke-width="1" />
+              <path id="Path_3" data-name="Path 3" d="M8,0,3.5,5.063,0,9" transform="translate(9 4)" fill="#ffcd39"
+                stroke="#1a1a56" stroke-width="1" />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="collapse px-2" id="collapse{{@index}}">
+        <div>
+          <ul id="events-conditions">
+            {{#each this.conditions}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          <div class="pt-2 pb-2 text-end">
+            <a href="{{this.link}}" target="_blank" class="btn btn-sm btn-primary text-end">Register now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+
+  <!-- news  -->
+  <div id="news" class="col-12 pb-3 bg-light pt-3 mb-3">
+    <h2 class="section-header mb-3">NEWS</h2>
+    {{#each news}}
+    <div class="m-1 row mb-3">
+      <div class="col-6">
+        <h6 id="news-header">{{this.title}}</h6>
+        <p id="news-content" style="white-space: pre-line">{{this.news}}</p>
+        <a href="news/{{@index}}" id="news-link">Read More</a>
+      </div>
+      <div class="col-6">
+        <img id="news-img" src="../news_img/{{this.img}}.jpg" class="rounded" height="160px" alt="">
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+
+  <!-- explore devagiri  -->
+  <div id="explore" class="col-12 mb-3">
+    <h2 class="section-header text-center">EXPLORE DEVAGIRI</h2>
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 m-0">
+      <div class="col-4">
+        <a href="" style="text-decoration: none; color:black;">
+          <div class="card-block card">
+            <img class="p-2" src="../images/1.jpg" alt="" width="100%" height="100%">
+            <h6>Self</h6>
+          </div>
+        </a>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/sample2.png" alt="" width="100%" height="100%">
+          <h6>Thanal</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/3.jpg" alt="" width="100%" height="100%">
+          <h6>Indore</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/sample1.png" alt="" width="100%" height="100%">
+          <h6>Old block</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- question bank  -->
+  <div id="question-bank" class="col-12 pb-3 pt-3 mb-3">
+    <h2 class="section-header text-center mb-3">QUESTION BANK</h2>
+    <form action="">
+      <div class="row m-1 text-align-center">
+        <div class="col-3 p-2">
+          <select class="form-select " aria-label="Default select example">
+            <option selected>Dept</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-3 p-2">
+          <select class="form-select " aria-label="Default select example">
+            <option selected>Course</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-3 p-2">
+          <select class="form-select " aria-label="Default select example">
+            <option selected>sem</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-3 p-2 d-flex align-items-center">
+          <button class="btn btn-sm btn-primary ">Download</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- explore devagiri  -->
+  <div id="fests" class="col-12">
+    <h2 class="section-header text-center mb-3">FESTS</h2>
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 m-0">
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/1.jpg" alt="" width="100%" height="100%">
+          <h6>ENVI</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/sample2.png" alt="" width="100%" height="100%">
+          <h6>NIRVANA</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/3.jpg" alt="" width="100%" height="100%">
+          <h6>ENIGMA</h6>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-block card">
+          <img class="p-2" src="../images/sample1.png" alt="" width="100%" height="100%">
+          <h6>YUGA</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- footer section --}}
+  <div id="about" class="col-12 p-3 mt-4">
+    <div class="row mb-3">
+      <div class="col-6 pl-2">
+        <h6 class="m-0">BCA</h6>
+        <h6 class="m-0">Devagiri 2021-24</h6>
+      </div>
+      <div class="col-6">
+        <div class="row pt-3">
+          <div class="col">
+            <a href="https://instagram.com/bcasjc?igshid=OGQ2MjdiOTE=">
+              <img src="/images/instagram.svg" alt="">
+            </a>
+          </div>
+          <div class="col">
+            <a href="tel:+919995338872" target="_blank">
+              <img src="/images/telephone-fill.svg" alt="">
+            </a>
+          </div>
+          <div class="col">
+            <a href="https://wa.me/9847887293" target="_blank">
+              <img src="/images/whatsapp.svg" alt="">
+            </a>
+          </div>
+          <div class="col">
+            <a href="">
+              <img src="/images/twitter.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="m-0">Copyright &copy;2023 Bcasjc</p>
+    </div>
+  </div>
+</div>

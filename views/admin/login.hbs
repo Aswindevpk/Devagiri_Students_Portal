@@ -1,0 +1,29 @@
+
+<div id="LoginSection">
+    <div class="d-flex p-4">
+        <h3 class="mr-2">Login</h3>
+    </div>
+    <form class="mx-3" action="/admin/login" method="post">
+        <!-- Email input -->
+        <div class="mb-4">
+            <input type="name" id="form2Example1" placeholder="usr_name" class="form-control" name="user_name" required />
+        </div>
+
+        <!-- Password input -->
+        <div class="mb-3">
+            <input type="password" id="form2Example2" placeholder="Password" name="password" class="form-control" required />
+            {{#if error}}
+                <p class="text-danger m-0 text-left">{{error}}</p>
+            {{/if}}
+        </div>
+        <button type="submit" class="btn btn-success d-block">Login</button>
+    </form>
+</div>
+
+<style>
+    #LoginSection {
+    margin: auto;
+    margin-top: 3rem;
+    width: 450px;
+    height: 300px;}
+</style>

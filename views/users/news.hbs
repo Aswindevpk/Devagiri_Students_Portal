@@ -1,0 +1,54 @@
+<nav class="m-3 mt-0" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" style="text-decoration: none;">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{news.title}}</li>
+  </ol>
+</nav>
+<div class="m-4">
+  <h2 id="title" class="text-center">{{news.title}}</h2>
+  <div class="col-12 mt-3">
+    <img id="img" src="../news_img/{{news.img}}.jpg" class="rounded" height="160px" width="100%" alt="">
+  </div>
+  <div style="white-space: pre-line" id="body" class="mt-4">{{news.news}}</div>
+</div>
+
+<style>
+    /* global variables  */
+    :root {
+        --bg-color: #DEE2E6;
+        --primary-color: #1A1A56;
+        --secondary-color: #FFCD39;
+        --font-para: 'Poppins', serif;
+        --font-title: 'ubuntu', serif;
+    }
+
+    @keyframes move-up {
+        0% {
+            transform: translateY(10%);
+        }
+
+        100% {
+            transform: translateY(0%);
+        }
+    }
+    #title{
+      animation-name: move-up;
+      animation-timing-function: ease-in-out;
+      animation-duration: 2000ms;
+      font-size: var(--font-para);
+      font-size: x-large;
+    }
+    #img{
+      animation-name: move-up;
+      animation-timing-function: ease-in-out;
+      animation-duration: 2000ms;
+    }
+    #body{
+      animation-name: move-up;
+      animation-timing-function: ease-in-out;
+      animation-duration: 2000ms;
+      font-size: var(--font-para);
+      color: #1A1A56;
+    }
+    
+</style>

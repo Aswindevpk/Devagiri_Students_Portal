@@ -1,0 +1,42 @@
+<!-- news  -->
+<div id="news" class="col-12 pb-3 p-2">
+    <h2 class="section-header text-center mb-3">Edit News</h2>
+    <div>
+        <form action="/admin/edit-news" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="title" placeholder="news title" value="{{news.title}}"
+                    required>
+            </div>
+            <div class="mb-3" style="display:none;">
+                <input type="text" class="form-control" name="index" placeholder="news title" value="{{news.index}}"
+                    required>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="news" rows="10" placeholder="body of news">{{news.news}}</textarea>
+            </div>
+            <img class="col-3 mb-3" src="/news_img/{{news.img}}.jpg" id="selectedImageNews" class="img-fluid"
+                style="width: 100px;">
+            <div class="mb-3">
+                <input class="form-control" type="file" name="image" id="imageInputNews">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-sm btn-primary">Edit News</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById("imageInputNews");
+    const selectedImage = document.getElementById("selectedImageNews");
+
+    input.addEventListener("change", function () {
+        const reader = new FileReader();
+        reader.onload = function () {
+            selectedImage.src = reader.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    });
+
+
+</script>

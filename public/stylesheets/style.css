@@ -1,0 +1,290 @@
+/* global variables  */
+:root {
+    --bg-color: #DEE2E6;
+    --primary-color: #1A1A56;
+    --secondary-color: #FFCD39;
+    --font-para: 'Poppins', serif;
+    --font-title: 'Poppins', serif;
+}
+
+/* common properties  */
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-color);
+}
+
+/* section heading properties  */
+.section-header {
+    animation-name: move-up;
+    animation-duration: 2000ms;
+    animation-timing-function: ease-in-out;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-family: var(--font-title);
+    text-align: center;
+}
+
+/* animation keyframes  */
+@keyframes to-left{
+    0%{
+        transform: translateX(10%);
+    }
+    100%{
+     transform: translateX(0%);   
+    }
+
+}
+
+@keyframes move-up{
+    0%{
+        transform: translateY(20%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+@keyframes move-down{
+    0%{
+        transform: translateY(-20%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
+@keyframes pop-up {
+    0%{
+        transform: scale(0.9);
+    }
+    100%{
+        transform: scale(1);
+    }
+    
+}
+
+
+
+/* common proporty for the website it applies to the body */
+
+
+#navbar {
+    animation-name: move-down;
+    animation-duration: 3000ms;
+    display: block;
+    background-color: var(--bg-color);
+    /* position:fixed;
+    margin-bottom: 2rem;
+    top: 0;
+    width: 100%;
+    overflow: hidden; */
+}
+
+/* navigation section */
+.nav-link {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+#navbarBranding div h4 {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+#navbarBranding div p {
+    color: var(--primary-color);
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+/* carousel section properties */
+#carousel{
+    animation-name: pop-up;
+    animation-timing-function: ease-out;
+    animation-duration: 3000ms;
+    padding: 5px;
+}
+#carousel img{
+    
+    border-radius: 10px;
+}
+
+
+#blood-donation{
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color: red;
+    border-radius: 10px;
+}
+#blood-donation p{
+    color:white;
+    animation: blinker 4s linear infinite;
+    font-family: var(--font-para);
+    font-size: x-large;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+#blood-donation a{
+    justify-content: center;
+    color:red;
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    font-family: var(--font-para);
+}
+
+
+#events{
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color: var(--bg-color);
+}
+#event-date{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    font-family: var(--font-para);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: smaller;
+}
+#event-time{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-para);
+    font-weight: 400;
+
+}
+#event-name{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    font-family: var(--font-title);
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    font-size: x-large;
+}
+#events-conditions{
+    font-family: var(--font-para);
+    font-size: small;
+    padding-left: 1rem;
+    margin: 0px;
+}
+
+
+
+#news {
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color: var(--bg-color);
+}
+#news-date{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    font-family: var(--font-title);
+    font-size: smaller;
+    padding: 0px;
+    margin: 0px;
+}
+#news-header{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+}
+#news-content{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    height:60px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-para);
+    font-size: smaller;
+}
+#news-img{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    width: 100%;
+}
+#news-link{
+    animation-name: to-left;
+    animation-duration: 3000ms;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-para);
+    font-size: smaller;
+    text-align: end;
+    text-decoration: none;
+}
+
+/* explore devagiri */
+#explore {
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color: var(--bg-color);
+}
+.scrolling-wrapper{
+	overflow-x: auto;
+    text-align: center;
+    width: 100%;
+}
+.card-block{
+    padding: 20px;
+	height: 100%;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	transition: all 1s ease-in-out !important;
+	border-radius: 15px;
+    padding: 0;
+}
+
+.card-block img{
+    border-radius: 15px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+#explore-title{
+    position: absolute;
+    bottom: 0;
+}
+
+#question-bank{
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color:white;
+    
+}
+
+#about{
+    animation-name: move-up;
+    animation-duration: 3000ms;
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+

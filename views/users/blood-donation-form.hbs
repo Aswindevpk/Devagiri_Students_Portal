@@ -1,0 +1,62 @@
+<nav class="m-3 mt-0" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" ><a href="/" style="text-decoration: none;">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Blood donation</li>
+  </ol>
+</nav>
+<div id="blood-donation-form" class="m-3">
+    <h2 class="text-center mt-5">Fill Form To Donate</h2>
+    <p class="text-center p-4">A single drop of blood can make a huge difference</p>
+    <form action="/donate-blood" method="post">
+        <div class="mb-4 align-center">
+            <input type="text" placeholder="Name" name="name" class="form-control" required />
+        </div>
+        <div class="mb-4 align-center">
+            <input type="text" placeholder="Roll No" name="roll_number" class="form-control" required />
+        </div>
+        <div class="mb-4 align-center">
+            <input type="text" placeholder="Mobile" name="phone" class="form-control" required />
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    
+</div>
+
+<style>
+    /* global variables  */
+    :root {
+        --bg-color: #DEE2E6;
+        --primary-color: #1A1A56;
+        --secondary-color: #FFCD39;
+        --font-para: 'Poppins', serif;
+        --font-title: 'ubuntu', serif;
+    }
+
+    @keyframes move-up {
+        0% {
+            transform: translateY(20%);
+        }
+
+        100% {
+            transform: translateY(0%);
+        }
+    }
+
+    #blood-donation-form {
+        animation-name: move-up;
+        animation-timing-function: ease-in-out;
+        animation-duration: 2000ms;
+    }
+
+    #blood-donation-form h4 {
+        font-family: var(--font-title);
+        font-size: x-large;
+    }
+
+    #blood-donation-form p {
+        font-family: var(--font-para);
+        color: var(--primary-color);
+    }
+</style>
