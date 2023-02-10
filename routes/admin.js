@@ -84,6 +84,7 @@ router.post('/edit-event', verifyLogin, (req, res) => {
 
 router.post('/add-event', verifyLogin, (req, res) => {
     var event = req.body;
+    event.datetime= new Date(event.datetime)
     event.conditions = event.conditions.split('\n');
     adminHelper.addEvent(event).then(() => {
         res.redirect('/admin')

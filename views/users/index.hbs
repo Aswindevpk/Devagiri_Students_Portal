@@ -42,7 +42,6 @@
 
 
 
-
   <!-- daily updates -->
   <div id="events" class="col-12 px-2 pt-3 ">
     <h2 class="section-header">EVENTS</h2>
@@ -51,11 +50,11 @@
       <div id="eventClick" class="row p-2" data-bs-toggle="collapse" href="#collapse{{@index}}" role="button"
         aria-expanded="false" aria-controls="collapseExample">
         <div class="col-6">
-          <p id="event-date">{{this.date}}</p>
+          <p id="event-date">{{dateFormat this.datetime 'ddd, MMM D'}}</p>
           <h3 id="event-name">{{this.name}}</h3>
         </div>
         <div class="col-6 text-end ">
-          <p id="event-time">{{this.time}}</p>
+          <p id="event-time">{{dateFormat this.datetime "h:mm A"}}</p>
           <svg xmlns="http://www.w3.org/2000/svg" width="17.727" height="13.707" viewBox="0 0 17.727 13.707">
             <g id="Group_21" data-name="Group 21" transform="translate(0.354 0.354)">
               <line id="Line_6" data-name="Line 6" x2="9" y2="9" fill="none" stroke="#1a1a56" stroke-width="1" />
@@ -84,6 +83,12 @@
     </div>
     {{/each}}
   </div>
+
+
+
+
+
+
 
 
   <!-- news  -->
@@ -242,3 +247,40 @@
     </div>
   </div>
 </div>
+
+
+  {{!-- <div class="text-center">
+    <h2>ENVI 6</h2>
+    <p id="timer" class="text-center" style="font-size:x-large;"></p>
+  </div> --}}
+
+    <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Feb 11, 2023 9:00:00 AM").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="timer"
+      document.getElementById("timer").innerHTML = days + "D " + hours + "H "
+        + minutes + "M " + seconds + "S ";
+
+      // If the count down is finished, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>

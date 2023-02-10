@@ -3,7 +3,7 @@ var names = require('../config/names')
 
 module.exports = {
     getCarousal: () => {
-        return new Promise(async(resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             col = db.collection('contents')
             var carousal_arr = await col.aggregate([
                 { $limit: 1 },
@@ -14,7 +14,7 @@ module.exports = {
         })
 
     },
-    getEvent:()=>{
+    getEvent: () => {
         return new Promise(async (resolve, reject) => {
             col = db.collection('contents')
             var events = await col.aggregate([
@@ -22,10 +22,25 @@ module.exports = {
                 { $project: { events: 1 } }
             ]).toArray();
             events = events[0].events
+
+            // // this function format the date 
+            // function formatDate(dateString) {
+            //     var date = new Date(dateString.split("-").reverse().join("-")),
+            //         days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //         months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            //         dayName = days[date.getUTCDay()],
+            //         monthName = months[date.getUTCMonth()],
+            //         day = date.getUTCDate(),
+            //         year = date.getUTCFullYear();
+
+            //     return `${dayName}, ${monthName} ${day}`;
+            // }
+
+
             resolve(events)
         })
     },
-    getNews:()=>{
+    getNews: () => {
         return new Promise(async (resolve, reject) => {
             col = db.collection('contents')
             var dailynews = await col.aggregate([
@@ -36,7 +51,7 @@ module.exports = {
             resolve(dailynews)
         })
     },
-    getNewsDetails:(newsInd)=>{
+    getNewsDetails: (newsInd) => {
         return new Promise(async (resolve, reject) => {
             newsInd = parseInt(newsInd)
             col = db.collection('contents')

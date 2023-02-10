@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var hbs = require('express-handlebars');
+// var hbs  = require('express-handlebars');
+var exphbs  = require('express-handlebars');
+var dateformat = require('handlebars-dateformat');
 var admin = require('./routes/admin');
 var users = require('./routes/users');
 var session = require("express-session")
@@ -13,14 +15,38 @@ var fileUpload = require("express-fileupload")
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.engine('hbs', hbs.engine({
+var hbs = exphbs.create({
   extname: 'hbs',
   defaultLayout: 'layout',
-  layoutsDir: __dirname + '/views/layout/',
-  partialsDir: __dirname + '/views/partials/'
-}))
+  layoutsDir: path.join(__dirname, 'views', 'layout'),
+  partialsDir: path.join(__dirname, 'views', 'partials')
+});
+
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Register the helper for date formatting
+hbs.handlebars.registerHelper('dateFormat', dateformat);
+
+
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+// app.engine('hbs', hbs.engine({
+//   extname: 'hbs',
+//   defaultLayout: 'layout',
+//   layoutsDir: __dirname + '/views/layout/',
+//   partialsDir: __dirname + '/views/partials/'
+// }))
+
+// hbs.registerHelper('dateFormat', function(context, options) {
+//   // Your logic to format the date goes here
+//   // ...
+//   formattedDate= 1;
+//   return formattedDate;
+// });
+
 
 
 // uncomment after placing your favicon in /public
