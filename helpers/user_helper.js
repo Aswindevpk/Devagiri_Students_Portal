@@ -14,7 +14,25 @@ module.exports = {
         })
 
     },
-    getEvent: () => {
+    getBloodReq:()=>{
+        return new Promise( async (resolve, reject) => {
+            col = db.collection('contents')
+            let blood_req = await col.aggregate([
+                { $limit: 1 },
+                { $project: { blood_req: 1 } }
+            ]).toArray();
+            blood_req = blood_req[0].blood_req
+            resolve(blood_req)
+        })
+    },
+    addDonor:(donor_details)=>{
+        return new Promise(async(resolve, reject) => {
+            col = db.collection("blood_donors")
+            await col.insertOne(donor_details)
+            resolve()
+        })
+    },
+    getEvent:() => {
         return new Promise(async (resolve, reject) => {
             col = db.collection('contents')
             var events = await col.aggregate([
@@ -22,20 +40,6 @@ module.exports = {
                 { $project: { events: 1 } }
             ]).toArray();
             events = events[0].events
-
-            // // this function format the date 
-            // function formatDate(dateString) {
-            //     var date = new Date(dateString.split("-").reverse().join("-")),
-            //         days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            //         months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            //         dayName = days[date.getUTCDay()],
-            //         monthName = months[date.getUTCMonth()],
-            //         day = date.getUTCDate(),
-            //         year = date.getUTCFullYear();
-
-            //     return `${dayName}, ${monthName} ${day}`;
-            // }
-
 
             resolve(events)
         })

@@ -130,10 +130,9 @@ body {
     color:white;
     animation: blinker 4s linear infinite;
     font-family: var(--font-para);
-    font-size: x-large;
+    font-size: large;
     font-weight: 600;
-    margin: 0px;
-    padding: 0px;
+
 }
 #blood-donation a{
     justify-content: center;

@@ -4,10 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var hbs  = require('express-handlebars');
 var exphbs  = require('express-handlebars');
 var dateformat = require('handlebars-dateformat');
 var admin = require('./routes/admin');
+var blood_donation = require('./routes/blood_donation')
 var users = require('./routes/users');
 var session = require("express-session")
 var fileUpload = require("express-fileupload")
@@ -30,22 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 hbs.handlebars.registerHelper('dateFormat', dateformat);
 
 
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
-// app.engine('hbs', hbs.engine({
-//   extname: 'hbs',
-//   defaultLayout: 'layout',
-//   layoutsDir: __dirname + '/views/layout/',
-//   partialsDir: __dirname + '/views/partials/'
-// }))
 
-// hbs.registerHelper('dateFormat', function(context, options) {
-//   // Your logic to format the date goes here
-//   // ...
-//   formattedDate= 1;
-//   return formattedDate;
-// });
 
 
 
@@ -68,6 +53,7 @@ app.use(fileUpload())
 
 app.use('/admin', admin);
 app.use('/', users);
+app.use('/blood_donation',blood_donation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

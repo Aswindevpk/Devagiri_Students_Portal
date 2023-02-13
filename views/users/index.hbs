@@ -9,7 +9,7 @@
         {{else}}
         <div class="carousel-item">
           {{/if}}
-          <img src="/carousel/{{this}}.jpg" class="d-block w-100" alt="...">
+          <img src="/carousel/{{this}}.jpg" width="100%" height="380vh" >
         </div>
         {{/each}}
       </div>
@@ -31,14 +31,16 @@
   </script>
 
   {{!-- blood donation --}}
+  {{#if blood_req}}
   <div id="blood-donation" class="m-2 p-3">
     <div class="row">
-      <p class="col-7 text-center"><span>A+</span> Blood Urgent !</p>
+      <p class="col-7 text-center"><span>{{blood_req}}</span> Blood Urgent !</p>
       <div class="col-5 text-center">
         <a class="btn btn-primary" href="/donate-blood">Donate now</a>
       </div>
     </div>
   </div>
+  {{/if}}
 
 
 

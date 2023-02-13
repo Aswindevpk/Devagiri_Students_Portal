@@ -29,8 +29,10 @@ module.exports = {
         })
     },
 
+
     getAllCarousal: () => {
         return new Promise(async (resolve, reject) => {
+
             col = db.collection('contents')
             carousal_arr = await col.aggregate([
                 { $limit: 1 },
@@ -39,6 +41,8 @@ module.exports = {
             resolve(carousal_arr[0].carousal)
         })
     },
+
+    // add carousal in to the database 
     addCarousal: () => {
         return new Promise(async (resolve, reject) => {
             // extract the carousel contents 
@@ -49,20 +53,26 @@ module.exports = {
             ]).toArray();
 
             var carousal_array = carousal[0].carousal
-            var length = carousal_array.length + 1;
+            // if content in the carousel
+            if (carousal_array) {
+                var length = carousal_array.length;
+                //else 
+            } else {
+                var length = 0;
+            }
+
             length = length.toString();
-            console.log(length, carousal_array);
 
             // add the name to the database
             col = db.collection('contents')
             await col.updateOne(
                 { name: names.name },
                 { $push: { carousal: length } })
-
             resolve(length)
-
         })
     },
+
+    // removes the carousal element with name 
     removeCarousal: (carousal_name) => {
         return new Promise(async (resolve, reject) => {
             col = db.collection('contents')
@@ -70,9 +80,11 @@ module.exports = {
                 { name: names.name },
                 { $pull: { carousal: carousal_name } }
             )
+            // return carousal_name to delete it from the FileSystem 
             resolve(carousal_name)
         })
     },
+
     addEvent: (event) => {
         return new Promise(async (resolve, reject) => {
             col = db.collection('contents')

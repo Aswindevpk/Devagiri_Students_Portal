@@ -1,0 +1,54 @@
+<div class="text-center col-12 mb-4">
+    <h2>Blood Donation</h2>
+</div>
+<div class="container text-center mb-3">
+    <form action="/blood_donation/add" method="post">
+        <div class="form-group row">
+            <h6 for="blood-group" class="col-5 form-label pl-5">Blood Group:</h6>
+            <div class="col-4">
+                <select class="form-control" id="blood-group" name="blood_req">
+                    <option value="A+">A+</option>
+                    <option value="B+">B+</option>
+                    <option value="O+">O+</option>
+                    <option value="AB+">AB+</option>
+                    <option value="A-">A-</option>
+                    <option value="B-">B-</option>
+                    <option value="O-">O-</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mb-3">
+    <div class="row g-2">
+        {{#each blood_req}}
+
+        <div class="col-3 text-center">
+            <div class="p-2 border bg-light row m-1">
+                <h6>{{this}}</h6>
+                <a href="/blood_donation/delete/{{this}}" class="col-2"
+                    onclick="return confirm('Are you really want to remove ?')"><i class="bi bi-trash3-fill"
+                        style="font-size: 1.4rem; color: red;"></i></a>
+            </div>
+        </div>
+
+        {{/each}}
+    </div>
+</div>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+    });
+</script>

@@ -15,7 +15,7 @@ const verifyLogin = (req, res, next) => {
 }
 
 
-
+// defaunlt root for user 
 router.get('/', verifyLogin, function (req, res, next) {
     adminHelper.getAllCarousal().then((carousal_arr) => {
         adminHelper.getEvent().then((events) => {
@@ -26,6 +26,15 @@ router.get('/', verifyLogin, function (req, res, next) {
     })
 });
 
+
+//logout
+router.get('/logout', verifyLogin, (req, res) => {
+    req.session.destroy()
+    res.redirect('/admin')
+});
+
+
+//login 
 router.get('/login', function (req, res, next) {
     res.render('admin/login', { admin: true })
 });
@@ -41,11 +50,10 @@ router.post('/login', (req, res) => {
             res.render('admin/login', { admin: true, error: response.error })
         }
     })
-})
+}),
 
 
-
-
+// add carousal to the database
 router.post('/add-carousal', verifyLogin, (req, res) => {
     if (req.files) {
         var image = req.files.image
@@ -64,7 +72,23 @@ router.post('/add-carousal', verifyLogin, (req, res) => {
     }
 
 });
+router.get('/delete-carousal/:carousal_name', verifyLogin, (req, res) => {
+    let carousal_name = req.params.carousal_name
+    adminHelper.removeCarousal(carousal_name).then((carousal_name) => {
+        const filepath = "C:\\Users\\DELL\\Desktop\\Devagiri_students_portal\\public\\carousel\\" + carousal_name + '.jpg';
+        fs.unlink(filepath, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect('/admin')
+            }
+        });
+    })
 
+}),
+
+
+//event
 router.get('/edit-event/:eventInd', verifyLogin, (req, res) => {
     let eventInt = req.params['eventInd'];
     adminHelper.editEvent(eventInt).then((event) => {
@@ -81,7 +105,6 @@ router.post('/edit-event', verifyLogin, (req, res) => {
     })
 });
 
-
 router.post('/add-event', verifyLogin, (req, res) => {
     var event = req.body;
     event.datetime= new Date(event.datetime)
@@ -89,10 +112,6 @@ router.post('/add-event', verifyLogin, (req, res) => {
     adminHelper.addEvent(event).then(() => {
         res.redirect('/admin')
     })
-});
-router.get('/logout', verifyLogin, (req, res) => {
-    req.session.destroy()
-    res.redirect('/admin')
 });
 
 router.get('/delete-event/:event_name', verifyLogin, (req, res) => {
@@ -102,10 +121,31 @@ router.get('/delete-event/:event_name', verifyLogin, (req, res) => {
     })
 })
 
-router.get('/delete-carousal/:carousal_name', verifyLogin, (req, res) => {
-    let carousal_name = req.params.carousal_name
-    adminHelper.removeCarousal(carousal_name).then((carousal_name) => {
-        const filepath = "C:\\Users\\DELL\\Desktop\\college website\\public\\carousel\\" + carousal_name + '.jpg';
+
+
+//news section
+router.post('/add-news', verifyLogin, (req, res) => {
+    if (req.files) {
+        news = req.body;
+        news.img = news.title.split(' ').join('_');
+        var image = req.files.image
+        adminHelper.addNews(news).then(() => {
+            image.mv('./public/news_img/' + news.img + '.jpg', (err, done) => {
+                if (!err) {
+                    res.redirect('/admin')
+                } else {
+                    console.log(err)
+                }
+            })
+        })
+
+    }
+}),
+router.get('/delete-news/:title', verifyLogin, (req, res) => {
+    let title = req.params.title
+    adminHelper.removeNews(title).then((title) => {
+        let img = title.split(' ').join('_');
+        const filepath = "C:\\Users\\DELL\\Desktop\\Devagiri_students_portal\\public\\news_img\\" + img + '.jpg';
         fs.unlink(filepath, (err) => {
             if (err) {
                 console.log(err);
@@ -114,48 +154,13 @@ router.get('/delete-carousal/:carousal_name', verifyLogin, (req, res) => {
             }
         });
     })
-
 }),
-
-    router.post('/add-news', verifyLogin, (req, res) => {
-        if (req.files) {
-            news = req.body;
-            news.img = news.title.split(' ').join('_');
-            var image = req.files.image
-            adminHelper.addNews(news).then(() => {
-                image.mv('./public/news_img/' + news.img + '.jpg', (err, done) => {
-                    if (!err) {
-                        res.redirect('/admin')
-                    } else {
-                        console.log(err)
-                    }
-                })
-            })
-
-        }
-    }),
-
-    router.get('/delete-news/:title', verifyLogin, (req, res) => {
-        let title = req.params.title
-        adminHelper.removeNews(title).then((title) => {
-            let img = title.split(' ').join('_');
-            const filepath = "C:\\Users\\DELL\\Desktop\\college website\\public\\news_img\\" + img + '.jpg';
-            fs.unlink(filepath, (err) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.redirect('/admin')
-                }
-            });
-        })
-    }),
-
-    router.get('/edit-news/:newsInd', verifyLogin, (req, res) => {
-        let newsInt = req.params['newsInd'];
-        adminHelper.editNews(newsInt).then((news) => {
-            res.render('admin/edit-news', { admin: true, news })
-        })
-    });
+router.get('/edit-news/:newsInd', verifyLogin, (req, res) => {
+    let newsInt = req.params['newsInd'];
+    adminHelper.editNews(newsInt).then((news) => {
+        res.render('admin/edit-news', { admin: true, news })
+    })
+});
 
 router.post('/edit-news', verifyLogin, (req, res) => {
     if (req.files) {
@@ -163,7 +168,7 @@ router.post('/edit-news', verifyLogin, (req, res) => {
         var image = req.files.image;
         news.img = news.title.split(' ').join('_');
         adminHelper.editNewsCnf(news).then((oldNews) => {
-            const oldImgPath = "C:\\Users\\DELL\\Desktop\\college website\\public\\news_img\\" + oldNews.img + '.jpg';
+            const oldImgPath = "C:\\Users\\DELL\\Desktop\\Devagiri_students_portal\\public\\news_img\\" + oldNews.img + '.jpg';
             fs.unlink(oldImgPath, (err) => {
                 if (err) {
                     console.log(err);
